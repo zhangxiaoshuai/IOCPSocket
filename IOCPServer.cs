@@ -403,7 +403,9 @@ namespace ConsoleICOPSERVER
                         Log4Debug(String.Format("收到 {0} 数据为 {1}", s.RemoteEndPoint.ToString(), info));
                         //TODO 处理数据  
 
-                        
+                        //发送回客户端的数据
+                        string senddata = "receive data:";
+                        s.Send(Encoding.Default.GetBytes(senddata));
                         //增加服务器接收的总字节数。  
                     }
 
