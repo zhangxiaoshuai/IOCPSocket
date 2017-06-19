@@ -266,7 +266,7 @@ namespace ConsoleICOPSERVER
                         SocketAsyncEventArgs asyniar = _objectPool.Pop();
                         asyniar.UserToken = s;
 
-                        Log4Debug(String.Format("客户 {0} 连入, 共有 {1} 个连接。", s.RemoteEndPoint.ToString(), _clientCount));
+                        Log4Debug(String.Format("客户{0}连入,共有{1}个连接。", s.RemoteEndPoint.ToString(), _clientCount));
 
                         if (!s.ReceiveAsync(asyniar))//投递接收请求  
                         {
@@ -275,7 +275,7 @@ namespace ConsoleICOPSERVER
                     }
                     catch (SocketException ex)
                     {
-                        Log4Debug(String.Format("接收客户 {0} 数据出错, 异常信息： {1} 。", s.RemoteEndPoint, ex.ToString()));
+                        Log4Debug(String.Format("接收客户{0}数据出错, 异常信息：{1}。", s.RemoteEndPoint, ex.ToString()));
                         //TODO 异常处理  
                     }
                     //投递下一个接受请求  
@@ -400,11 +400,11 @@ namespace ConsoleICOPSERVER
                         Array.Copy(e.Buffer, e.Offset, data, 0, data.Length);//从e.Buffer块中复制数据出来，保证它可重用  
 
                         string info = Encoding.Default.GetString(data);
-                        Log4Debug(String.Format("收到 {0} 数据为 {1}", s.RemoteEndPoint.ToString(), info));
+                        Log4Debug(String.Format("收到{0}数据为{1}", s.RemoteEndPoint.ToString(), info));
                         //TODO 处理数据  
 
                         //发送回客户端的数据
-                        string senddata = "receive data:";
+                        string senddata = "server received";
                         s.Send(Encoding.Default.GetBytes(senddata));
                         //增加服务器接收的总字节数。  
                     }
